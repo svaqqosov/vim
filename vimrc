@@ -6,7 +6,7 @@ Plug 'scrooloose/nerdtree' " file drawer, open with :NERDTreeToggle
 Plug 'scrooloose/nerdcommenter'   " Easily toggle comments
 Plug 'flazz/vim-colorschemes' " colorschemes 
 Plug 'http://github.com/sjl/gundo.vim.git' " Visual file change history 
-
+Plug 'scrooloose/syntastic'       " Check syntax errors
 " Plugs for PHP
 Plug 'stephpy/vim-php-cs-fixer' " Plugin will execute the php-cs-fixerFp
 Plug 'beanworks/vim-phpfmt' " PHP auto format plugin for vim. Formats using phpcbf
