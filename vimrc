@@ -4,13 +4,17 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdtree' " file drawer, open with :NERDTreeToggle
 Plug 'scrooloose/nerdcommenter'   " Easily toggle comments
-Plug 'flazz/vim-colorschemes' " colorschemes 
-Plug 'http://github.com/sjl/gundo.vim.git' " Visual file change history 
+Plug 'flazz/vim-colorschemes' " colorschemes
+Plug 'http://github.com/sjl/gundo.vim.git' " Visual file change history
 Plug 'scrooloose/syntastic'       " Check syntax errors
 " Plugs for PHP
 Plug 'stephpy/vim-php-cs-fixer' " Plugin will execute the php-cs-fixerFp
 Plug 'beanworks/vim-phpfmt' " PHP auto format plugin for vim. Formats using phpcbf
 Plug 'arnaud-lb/vim-php-namespace' " Adds use statements automatically
+Plug 'dkprice/vim-easygrep'
+Plug 'Chiel92/vim-autoformat'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 call plug#end()
 " }}}
 
@@ -24,10 +28,10 @@ set termguicolors
 set autoindent " automatically set indent of new line
 set smartindent
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set laststatus=2 " show the satus line all the time
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set laststatus=4 " show the satus line all the time
 " }}}
 
 " Folding {{{
@@ -166,6 +170,9 @@ let g:php_cs_fixer_rules = "@PSR2"
 let g:phpfmt_standard = 'PSR2'
 " }}}
 
+" Php Plugins settings {{{
+au BufWrite * :Autoformat
+" }}}
 " AutoGroups {{{
 augroup configgroup
     autocmd!
