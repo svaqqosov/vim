@@ -15,6 +15,8 @@ Plug 'dkprice/vim-easygrep'
 Plug 'Chiel92/vim-autoformat'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+Plug 'tarekbecker/vim-yaml-formatter'
+Plug 'fatih/vim-go'
 call plug#end()
 " }}}
 
@@ -111,6 +113,13 @@ vnoremap <right> <nop>
 vnoremap <left> <nop>
 inoremap <right> <nop>
 
+" Go vim plugin Mappings
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+let g:go_list_type = "quickfix" " All lists will be of type quickfix
 " }}}
 
 " NerdTree {{{
@@ -158,6 +167,9 @@ let g:syntastic_php_phpmd_exec = 'phpmd'
 let g:syntastic_php_phpmd_post_args = 'codesize,controversial,design'
 " Syntastic configuration for JavaScript
 let g:syntastic_javascript_checkers = ['jshint']
+" Syntastic vonfiguration for Go
+" let g:syntastic_go_checkers = ['gometalinter']
+
 " }}}
 
 " Php Plugins settings {{{
@@ -173,12 +185,20 @@ let g:phpfmt_standard = 'PSR2'
 " Php Plugins settings {{{
 au BufWrite * :Autoformat
 " }}}
+
+" Go Plugins settings {{{
+" }}}
+
 " AutoGroups {{{
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
     autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.rb :call <SID>StripTrailingWhitespaces()
 augroup END
+" }}}
+
+" Autocmd settings {{{
+autocmd FileType yaml,yml let b:autoformat_autoindent=0
 " }}}
 
 " Custom Functions {{{
