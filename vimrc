@@ -12,6 +12,9 @@ Plug 'xolox/vim-easytags'
 Plug 'tarekbecker/vim-yaml-formatter'
 Plug 'fatih/vim-go'
 Plug 'https://github.com/w0rp/ale.git' " Ale plugin for autoformating
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 " Colors ****************************************** "
@@ -24,10 +27,10 @@ set termguicolors
 set autoindent " automatically set indent of new line
 " set smartindent
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set softtabstop=4
-set laststatus=4 " show the satus line all the time
+set laststatus=2 " show the satus line all the time
 
 
 " Folding  ****************************************** "
@@ -143,6 +146,7 @@ let g:ctrlp_working_path_mode = 2
 "ALE pulugin settings ********************************** "
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'yaml': ['yamllint'],
 \}
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
@@ -153,6 +157,7 @@ let g:ale_pattern_options = {
 let g:ale_fixers = {
             \   'javascript': ['eslint'],
             \   'json': ['fixjson'],
+            \   'yaml': ['yamllint'],
             \   }
 let g:ale_fix_on_save = 1 " AutoFix with aviliable linter on save
 
