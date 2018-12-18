@@ -15,6 +15,7 @@ Plug 'https://github.com/w0rp/ale.git' " Ale plugin for autoformating
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 call plug#end()
 
 " Colors ****************************************** "
@@ -146,7 +147,12 @@ let g:ctrlp_working_path_mode = 2
 "ALE pulugin settings ********************************** "
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'vue': ['eslint'],
 \   'yaml': ['yamllint'],
+\   'php': ['php'],
+\   'pug': ['pug-lint'],
+\   'c': ['cppcheck'],
+\   'cpp': ['cppcheck'],
 \}
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
@@ -156,8 +162,12 @@ let g:ale_pattern_options = {
 " ALE pulugin fixers
 let g:ale_fixers = {
             \   'javascript': ['eslint'],
+            \   'vue': ['eslint'],
             \   'json': ['fixjson'],
             \   'yaml': ['yamllint'],
+            \   'pug': ['pug-lint'],
+            \   'c': ['cppcheck'],
+            \   'cpp': ['cppcheck'],
             \   }
 let g:ale_fix_on_save = 1 " AutoFix with aviliable linter on save
 
@@ -183,4 +193,25 @@ function! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     let @/=_s
     call cursor(l, c)
+endfunction
+
+" NerdCommenter for vue.js 
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
 endfunction
